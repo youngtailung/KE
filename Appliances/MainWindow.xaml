@@ -5,8 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Appliances"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="РЕЖИМ РУКОВОДИТЕЛЯ ФИРМЫ" Height="800" Width="1200">
     <Grid>
-
+        <TabControl>
+            <TabItem Header="Бытовая техника">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="AppliancesTable" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Идентификатор" Width="*" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Название" Width="*" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Модель" Width="*" Binding="{Binding Model}"/>
+                            <DataGridTextColumn Header="Вид" Width="*" Binding="{Binding Type}"/>
+                            <DataGridTextColumn Header="Стоимость" Width="*" Binding="{Binding Cost}"/>
+                            <DataGridTextColumn Header="Дата выпуска" Width="*" Binding="{Binding DateOfIssue}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Клиенты">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="ClientsTable" AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Идентифкатор" Width="70pt" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Фамилия" Width="70pt" Binding="{Binding LastName}"/>
+                            <DataGridTextColumn Header="Имя" Width="70pt" Binding="{Binding FirstName}"/>
+                            <DataGridTextColumn Header="Серия паспорта" Width="100pt" Binding="{Binding PassportSerial}"/>
+                            <DataGridTextColumn Header="Номер паспорта" Width="100pt" Binding="{Binding PassportNumber}"/>
+                            <DataGridTextColumn Header="Адрес проживания" Width="*" Binding="{Binding Address}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Договоры">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="ContractsTable" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Идентификатор" Width="*" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Coтрудник" Width="*" Binding="{Binding EmployeeName}"/>
+                            <DataGridTextColumn Header="Клиент" Width="*" Binding="{Binding CustomerName}"/>
+                            <DataGridTextColumn Header="Код устройства" Width="*" Binding="{Binding PassportId}"/>
+                            <DataGridTextColumn Header="Дата подписания" Width="*" Binding="{Binding DateOfConfirmation}"/>
+                            <DataGridTextColumn Header="Дата начала" Width="*" Binding="{Binding DateOfBeginning}"/>
+                            <DataGridTextColumn Header="Дата окончания" Width="*" Binding="{Binding DateOfEnding}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

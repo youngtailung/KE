@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,9 +11,78 @@ using System.Threading.Tasks;
 
 namespace Appliances.Data
 {
-    public class dbContext
+    public class dbContext : DbContext
     {
+        public dbContext(DbContextOptions<dbContext> options) : base(options)
+        {
+            Database.EnsureDeleted();
+            Database.EnsureCreated();
+        }
 
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Type> Types { get; set; }
+        public DbSet<Passport> Passports { get; set; }
+        public DbSet<MainContract> MainContracts { get; set; }
+        public DbSet<ExtensionContract> ExtensionContracts { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Post>().HasData(GetPosts());
+            modelBuilder.Entity<Employee>().HasData(GetEmployees());
+            modelBuilder.Entity<Type>().HasData(GetTypes());
+            modelBuilder.Entity<Passport>().HasData(GetPassports());
+            modelBuilder.Entity<Customer>().HasData(GetCustomers());
+            modelBuilder.Entity<MainContract>().HasData(GetMainContracts());
+            base.OnModelCreating(modelBuilder);
+        }
+        private Post[] GetPosts()
+        {
+            return new Post[]
+            {
+                new Post { Id = 1, Name = "Руководитель фирмы" },
+                new Post { Id = 2, Name = "Руководитель отдела" }
+            };
+        }
+        private Employee[] GetEmployees()
+        {
+            return new Employee[]
+            {
+                new Employee { Id = 1, FirstName = "Давид", LastName = "Градинарь", Login = "admin", Password = "admin", PostId = 1 },
+                new Employee { Id = 2, FirstName = "Роман", LastName = "Воробьёв", Login = "emp", Password = "emo", PostId = 2 },
+            };
+        }
+        private Type[] GetTypes()
+        {
+            return new Type[]
+            {
+                new Type { Id = 1, Name = "Стиральная машина" },
+                new Type { Id = 2, Name = "Холодильник" },
+                new Type { Id = 3, Name = "Морозильная камера" },
+            };
+        }
+        private Passport[] GetPassports()
+        {
+            return new Passport[]
+            {
+                new Passport { Id = 1, Name = "Calgon 12", Model = "IX-1C21", TypeId = 1, Cost = 43000, DateOfIssue = new DateTime(2008, 5, 1, 8, 30, 52) },
+            };
+        }
+        private Customer[] GetCustomers()
+        {
+            return new Customer[]
+            {
+                new Customer { Id = 1, FirstName = "Витя", LastName = "Жгутин", PassportSerial = "5612", PassportNumber = "352312", Address = "Челябинская область, город Пушкино, пл. Бухарестская, 34" },
+            };
+        }
+        private MainContract[] GetMainContracts()
+        {
+            return new MainContract[]
+            {
+                new MainContract { Id = 1, EmployeeId = 1, CustomerId = 1, PassportId = 1, DateOfConfirmation = new DateTime(2010, 2, 3, 8, 30, 52), DateOfBeginning = new DateTime(2010, 2, 6, 10, 30, 00), DateOfEnding = new DateTime(2010, 8, 6, 10, 30, 00)},
+            };
+        }
     }
 
 
@@ -39,7 +110,6 @@ namespace Appliances.Data
         public ICollection<MainContract> Contracts { get; set; }
         public ICollection<ExtensionContract> ExtensionContracts { get; set; }
     }
-
     public class Customer
     {
         [Key]
@@ -58,30 +128,29 @@ namespace Appliances.Data
         public ICollection<ExtensionContract> ExtensionContracts { get; set; }
 
     }
-
-    public class Model
+    public class Type
     {
         [Key]
         public int Id { get; set; }
         [NotNull, MaxLength(50)]
         public string Name { get; set; }
-        public ICollection<Passport> Passport { get; set; }
+        public ICollection<Passport> Passports { get; set; }
     }
-
     public class Passport
     {
         [Key]
         public int Id { get; set; }
         [NotNull, MaxLength(50)]
         public string Name { get; set; }
-        public int ModelId { get; set; }
-        public Model Model { get; set; }
-        [NotNull]
-        public int Type { get; set; }
+        [NotNull, MaxLength(50)]
+        public string Model { get; set; }
+        public int TypeId { get; set; }
+        public virtual Type Type { get; set; }
         [NotNull]
         public int Cost { get; set; }
         [NotNull]
         public DateTime DateOfIssue { get; set; }
+        public ICollection<MainContract> MainContracts { get; set; }
     }
     public class MainContract
     {
@@ -92,7 +161,9 @@ namespace Appliances.Data
         public virtual Employee Employee { get; set; }
         [NotNull]
         public int CustomerId { get; set; }
-        public virtual Customer Customer { get; set; }
+        public virtual Customer Customer { get; set; }  
+        public int PassportId { get; set; }
+        public virtual Passport Passport { get; set; }
         [NotNull]
         public DateTime DateOfConfirmation { get; set; }
         [NotNull]
@@ -113,4 +184,5 @@ namespace Appliances.Data
         [NotNull]
         public DateTime DateOfConfirmation { get; set; }
     }
+    
 }
