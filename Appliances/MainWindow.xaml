@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Appliances"
         mc:Ignorable="d"
-        Title="РЕЖИМ РУКОВОДИТЕЛЯ ФИРМЫ" Height="800" Width="1200">
+        Title="MainWindow" Height="800" Width="1200">
     <Grid>
         <TabControl>
             <TabItem Header="Бытовая техника">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="AppliancesTable" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid x:Name="AppliancesTable" AutoGenerateColumns="False" IsReadOnly="True" Margin="0,82,0,65">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Идентификатор" Width="*" Binding="{Binding Id}"/>
                             <DataGridTextColumn Header="Название" Width="*" Binding="{Binding Name}"/>
@@ -20,6 +20,7 @@
                             <DataGridTextColumn Header="Дата выпуска" Width="*" Binding="{Binding DateOfIssue}"/>
                         </DataGrid.Columns>
                     </DataGrid>
+                    <Button Content="Новая запись" HorizontalAlignment="Left" Margin="10,0,0,679" FontSize="14" VerticalAlignment="Bottom" Height="39" Width="253" Click="Button_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Клиенты">

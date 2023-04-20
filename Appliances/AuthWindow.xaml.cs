@@ -59,6 +59,12 @@ namespace Appliances
                             window1.Show();
                             Close();
                             break;
+                        case 3:
+                            MessageBox.Show("Сотрудник технического отдела");
+                            break;
+                        case 4:
+                            MessageBox.Show("Сотрудник отдела по работе с клиентами");
+                            break;
                     }
                 }
                 else

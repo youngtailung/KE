@@ -9,8 +9,8 @@
     <Grid>
         <TextBox x:Name="Login" HorizontalAlignment="Center" Margin="0,410,0,0" Text="" VerticalAlignment="Top" FontSize="20" Width="352" Height="38"/>
         <PasswordBox x:Name="Password" HorizontalAlignment="Center" Margin="0,487,0,0" VerticalAlignment="Top" FontSize="20" Width="352" Height="39"/>
-        <Label Content="Логин" HorizontalAlignment="Left" Margin="124,384,0,0" VerticalAlignment="Top" FontSize="14" Width="132"/>
-        <Label Content="Пароль" HorizontalAlignment="Left" Margin="124,458,0,0" VerticalAlignment="Top" FontSize="14" Width="132"/>
+        <Label Content="Логин" HorizontalAlignment="Left" Margin="119,384,0,0" VerticalAlignment="Top" FontSize="14" Width="132"/>
+        <Label Content="Пароль" HorizontalAlignment="Left" Margin="119,458,0,0" VerticalAlignment="Top" FontSize="14" Width="132"/>
         <Button Content="Войти" HorizontalAlignment="Center" Margin="0,572,0,0" VerticalAlignment="Top" Height="40" FontSize="20" Width="238" Click="Button_Click"/>
     </Grid>
 </Window>

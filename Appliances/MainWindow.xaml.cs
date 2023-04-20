@@ -55,5 +55,11 @@ namespace Appliances
             ClientsTable.ItemsSource = DbContext.Customers.ToList();
             ContractsTable.ItemsSource = ContractsData.ToList();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Window2 window2 = new Window2();
+            window2.Show();
+        }
     }
 }

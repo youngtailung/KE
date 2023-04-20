@@ -42,7 +42,9 @@ namespace Appliances.Data
             return new Post[]
             {
                 new Post { Id = 1, Name = "Руководитель фирмы" },
-                new Post { Id = 2, Name = "Руководитель отдела" }
+                new Post { Id = 2, Name = "Руководитель отдела" },
+                new Post { Id = 3, Name = "Сотрудник технического отдела" },
+                new Post { Id = 4, Name = "Сотрудник отдела по работе с клиентами" }
             };
         }
         private Employee[] GetEmployees()
@@ -51,6 +53,8 @@ namespace Appliances.Data
             {
                 new Employee { Id = 1, FirstName = "Давид", LastName = "Градинарь", Login = "admin", Password = "admin", PostId = 1 },
                 new Employee { Id = 2, FirstName = "Роман", LastName = "Воробьёв", Login = "emp", Password = "emo", PostId = 2 },
+                new Employee { Id = 3, FirstName = "dadasd", LastName = "sdger", Login = "to", Password = "to", PostId = 3 },
+                new Employee { Id = 4, FirstName = "gfddcv", LastName = "nfg", Login = "cs", Password = "cs", PostId = 4 },
             };
         }
         private Type[] GetTypes()
@@ -80,7 +84,7 @@ namespace Appliances.Data
         {
             return new MainContract[]
             {
-                new MainContract { Id = 1, EmployeeId = 1, CustomerId = 1, PassportId = 1, DateOfConfirmation = new DateTime(2010, 2, 3, 8, 30, 52), DateOfBeginning = new DateTime(2010, 2, 6, 10, 30, 00), DateOfEnding = new DateTime(2010, 8, 6, 10, 30, 00)},
+                new MainContract { Id = 1, EmployeeId = 2, CustomerId = 1, PassportId = 1, DateOfConfirmation = new DateTime(2010, 2, 3, 8, 30, 52), DateOfBeginning = new DateTime(2010, 2, 6, 10, 30, 00), DateOfEnding = new DateTime(2010, 8, 6, 10, 30, 00)},
             };
         }
     }
